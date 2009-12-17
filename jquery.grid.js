@@ -8,6 +8,7 @@ Then use shift+h and shift+v to toggle it on and off.
 
 author: Myles Byrne (myles.id.au)
 version: 0.9 (2009-12-17)
+latest source at: http://github.com/quackingduck/jquery.grid.js
 
 **/
 

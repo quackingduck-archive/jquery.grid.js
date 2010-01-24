@@ -15,10 +15,10 @@ latest source at: http://github.com/quackingduck/jquery.grid.js
 (function($) {
 
 $.fn.grid = function(settings) {
-  var 
+  var
   container = this,
   settings = settings || {},
-  
+
   colWidth = settings.col || 60,
   gutterWidth = settings.gutter || 20,
   lineHeight = settings.line || 20,
@@ -29,16 +29,16 @@ $.fn.grid = function(settings) {
     zIndex: -1,
     opacity: 0.6
   };
-  
+
   // grid containers are forcibly re-drawn when the shorcut key is pressed
-  
+
   function hGrid(toggle) {
     container.find('> .hGrid').remove();
     if (!toggle) return false;
-    
-    var hGrid = 
+
+    var hGrid =
       $('<div class="hGrid">').css(gridAttribs).appendTo(container);
-    
+
     var pos = 0,
         containerHeight = container[0].offsetHeight,
         alt = false;
@@ -51,17 +51,17 @@ $.fn.grid = function(settings) {
       pos += lineHeight;
       alt = !alt;
     }
-    
+
     return true;
   }
-  
+
   function vGrid(toggle) {
     container.find('> .vGrid').remove();
     if (!toggle) return false;
-      
+
     var vGrid =
       $('<div class="vGrid">').css(gridAttribs).appendTo(container);
-      
+
     var pos = 0,
         containerWidth = container.width(),
         drawCol = false;
@@ -83,20 +83,20 @@ $.fn.grid = function(settings) {
     }
     return true;
   }
-  
+
   hGrid(eval(cookieVal('hGrid')));
   vGrid(eval(cookieVal('vGrid')));
-  
-  function cookieVal(name) { 
+
+  function cookieVal(name) {
     return document.cookie.indexOf(name+'=true') >= 0;
   }
-  
+
   function toggleCookie(name) {
     var val = !cookieVal(name);
     document.cookie = name+'='+val;
     return val;
   }
-  
+
   // detect if the container height has changed and re-draw the horiz grid
   var currentContainerHeight = container.height();
   setInterval(function() {
@@ -109,13 +109,13 @@ $.fn.grid = function(settings) {
   $(document).keydown(function(event){
     var hKey = 72, vKey = 86;
     if (event.shiftKey) switch(event.keyCode) {
-      case hKey: 
+      case hKey:
         hGrid(toggleCookie('hGrid')); break;
       case vKey:
         vGrid(toggleCookie('vGrid')); break;
     }
   });
-  
+
   return this;
 }
 

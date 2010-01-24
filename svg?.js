@@ -1,6 +1,9 @@
 /* 
 
-In theroy, all the col/row divs are unessecary. The same effect could be achieved by dynamically generating an svg background image, urlencoding it, the setting it as the background of a single div using the css background attribute. I can't make that work. Weird rendering issues.
+In theory, all the col/row divs are unnecessary. The same effect could be
+achieved by dynamically generating an svg background image, urlencoding it,
+the setting it as the background of a single div using the css background
+attribute. I can't make that work. Weird rendering issues.
 
 */
 

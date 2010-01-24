@@ -13,33 +13,34 @@ latest source at: http://github.com/quackingduck/jquery.grid.js
 **/
 
 (function($) {
-  
-$.fn.grid = function(settings) {
-  var container = this;
-  var settings = settings || {};
-  
-  var colWidth = settings.col || 60, 
-      gutterWidth = settings.gutter || 20,
-      lineHeight = settings.line || 20;
 
-  var gridAttribs = {
+$.fn.grid = function(settings) {
+  var 
+  container = this,
+  settings = settings || {},
+  
+  colWidth = settings.col || 60,
+  gutterWidth = settings.gutter || 20,
+  lineHeight = settings.line || 20,
+
+  gridAttribs = {
     position: 'absolute',
     top: 0, right: 0, bottom: 0, left: 0,
-    zIndex: 1, 
+    zIndex: -1,
     opacity: 0.6
-  }
+  };
   
   // grid containers are forcibly re-drawn when the shorcut key is pressed
   
   function hGrid(toggle) {
     container.find('> .hGrid').remove();
     if (!toggle) return false;
-
+    
     var hGrid = 
       $('<div class="hGrid">').css(gridAttribs).appendTo(container);
-
+    
     var pos = 0,
-        containerHeight = container.height(),
+        containerHeight = container[0].offsetHeight,
         alt = false;
     while (pos < containerHeight) {
       $('<div class="hRow">').css({
@@ -50,15 +51,15 @@ $.fn.grid = function(settings) {
       pos += lineHeight;
       alt = !alt;
     }
-
+    
     return true;
   }
-
+  
   function vGrid(toggle) {
     container.find('> .vGrid').remove();
     if (!toggle) return false;
       
-    var vGrid = 
+    var vGrid =
       $('<div class="vGrid">').css(gridAttribs).appendTo(container);
       
     var pos = 0,
@@ -114,6 +115,8 @@ $.fn.grid = function(settings) {
         vGrid(toggleCookie('vGrid')); break;
     }
   });
+  
+  return this;
 }
 
 })(jQuery);
